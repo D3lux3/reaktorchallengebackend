@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/index.js",
-    "build": "tsc .",
+    "build": "tsc",
     "postinstall": "npm run build"
   },
   "author": "",
