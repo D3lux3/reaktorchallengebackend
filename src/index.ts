@@ -11,8 +11,8 @@ app.use(express.json());
 
 app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT}`);
-    await setAllData();
     app.use('/products/', productRouter);
+    await setAllData();
     setInterval(async () => {
         await setAllData();
     }, 300000);
