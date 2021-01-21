@@ -15,6 +15,7 @@ The backend syncs its data with the legacy API every 5 minutes, because the give
 
 This backend has been made using Typescript and Node.js.
 
+Frontend: https://github.com/D3lux3/reaktorchallengefrontend
 ## Demo
 
 Here's link to a working demo of the whole project: https://reaktorchallengefrontend.herokuapp.com/
