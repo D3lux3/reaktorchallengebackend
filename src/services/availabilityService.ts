@@ -5,7 +5,7 @@ import { isString, parseManufacturerName, parseStockValue } from '../utils';
 const availabilityBaseUrl = "https://bad-api-assignment.reaktor.com/v2/availability/";
 
 /**
- * Fetches all availability data for manufacturer, and returns the data in a map for O(1) access.
+ * Fetches all availability data for manufacturer, and returns the data in a Map datastructure for O(1) access.
  * @param manufactureName 
  */
 export const getAvailabilityData = async (manufactureName: string): Promise<Map<string, StockEntry>> => {

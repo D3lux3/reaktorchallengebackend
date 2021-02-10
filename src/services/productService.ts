@@ -6,11 +6,18 @@ const productBaseUrl = 'https://bad-api-assignment.reaktor.com/v2/products/';
 const categories: string[] = ["gloves", "facemasks", "beanies"];
 export let productData: ProductEntry[] = [];
 
+/**
+ * Gets the data by category from the bad-api.
+ * @param category 
+ */
 export const getProductsWithoutStock = async (category: string): Promise<ProductEntry[]> => {
     const res = await axios.get<ProductEntry[]>(`${productBaseUrl}${category}`);
     return res.data;
 };
 
+/**
+ * Combines the product data with availability data.
+ */
 export const getProductAndAvailability = async (): Promise<void> => {
     const categoryPromises = categories.map(category => getProductsWithoutStock(category));
     productData = (await Promise.all(categoryPromises)).reduce((prev, next) => prev.concat(next));
