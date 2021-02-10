@@ -1,12 +1,13 @@
 import express, { Request, Response } from 'express';
-import { glovesData, facemasksData, beaniesData } from '../services/productService';
-import { parameterType } from '../types';
+import { productData } from '../services/productService';
+import { parameterType, ProductEntry } from '../types';
 import { paginateProductEntryData } from '../controllers/productController';
 import { parseUrlParam } from '../utils';
 
 const router = express.Router();
 
 router.get('/gloves', (req: Request<unknown, unknown, unknown, parameterType>, res: Response) => {
+    const glovesData: ProductEntry[] = productData.filter(product => product.type == "gloves");
     if (glovesData.length === 0) {
         res.status(503).send("Gloves are still being loaded! Come back in a few seconds!");
     } else {
@@ -17,6 +18,7 @@ router.get('/gloves', (req: Request<unknown, unknown, unknown, parameterType>, r
 });
 
 router.get('/facemasks', (req: Request<unknown, unknown, unknown, parameterType>, res: Response) => {
+    const facemasksData: ProductEntry[] = productData.filter(product => product.type === "facemasks");
     if (facemasksData.length === 0) {
         res.status(503).send("Facemasks are still being loaded! Come back in a few seconds!");
     } else {
@@ -27,6 +29,7 @@ router.get('/facemasks', (req: Request<unknown, unknown, unknown, parameterType>
 });
 
 router.get('/beanies', (req: Request<unknown, unknown, unknown, parameterType>, res: Response) => {
+    const beaniesData: ProductEntry[] = productData.filter(product => product.type === "beanies");
     if (beaniesData.length === 0) {
         res.status(503).send("Beanies are still being loaded! Come back in a few seconds!");
     } else {

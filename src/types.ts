@@ -1,14 +1,11 @@
-export interface ProductEntry extends CategoryProductEntry {
-    stock: StockType | undefined;
-}
-
-export interface CategoryProductEntry {
+export interface ProductEntry {
     id: string,
     type: ProductType,
     name: string,
     color: string[],
     price: number,
     manufacturer: string,
+    stock?: StockType;
 }
 
 export interface parameterType {
