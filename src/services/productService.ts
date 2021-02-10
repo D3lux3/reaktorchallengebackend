@@ -13,16 +13,12 @@ export const getProductsWithoutStock = async (category: string): Promise<Product
 
 export const getProductAndAvailability = async (): Promise<void> => {
     const categoryPromises = categories.map(category => getProductsWithoutStock(category));
-    productData = (await Promise.all(categoryPromises)).reduce((prev, next) => {
-        return prev.concat(next);
-    });
-    
+    productData = (await Promise.all(categoryPromises)).reduce((prev, next) => prev.concat(next));
+
+
     const manufactureNames = [...new Set(productData.map(p => p.manufacturer))];
     const manufacturerPromises = manufactureNames.map(name => getAvailabilityData(name));
-
-    const availabilityData = (await Promise.all(manufacturerPromises)).reduce((prev, next) => {
-        return prev = new Map([...prev, ...next]);
-    });
+    const availabilityData = (await Promise.all(manufacturerPromises)).reduce((prev, next) => prev = new Map([...prev, ...next]));
     
     productData = productData?.map(product => {
         return {
